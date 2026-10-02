@@ -8,10 +8,18 @@ A Claude Code plugin with three habits that keep an agent honest.
 
 ## Install
 
+The repository is a plugin, not a marketplace, so load it by path or by URL:
+
+```bash
+# from a clone
+git clone https://github.com/thefiredev-cloud/agent-ops-kit.git
+claude --plugin-dir ./agent-ops-kit
+
+# or straight from GitHub, for one session
+claude --plugin-url https://github.com/thefiredev-cloud/agent-ops-kit/archive/refs/heads/main.zip
 ```
-/plugin marketplace add https://github.com/thefiredev-cloud/agent-ops-kit
-/plugin install agent-ops-kit
-```
+
+`claude plugin validate ./agent-ops-kit` checks the manifest.
 
 ## What you get
 
@@ -75,7 +83,7 @@ passes. Both runs, every time you change the deny list.
 
 ## Requirements
 
-Python 3.9 or newer. No third-party packages.
+Claude Code with plugin support. Python 3.9 or newer for the scrubber. No third-party packages.
 
 ## Two things it does not do
 
@@ -83,6 +91,10 @@ It does not rewrite git history. A clean working tree says nothing about commit
 40 — check with `git log -p -S '<string>'`.
 
 It does not publish. The build is the output; the release is your call.
+
+## Status
+
+Version 0.1.0. Not listed in a plugin marketplace.
 
 ## License
 
