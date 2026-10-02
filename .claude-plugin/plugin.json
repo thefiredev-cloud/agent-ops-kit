@@ -5,8 +5,8 @@
   "description": "Three habits that keep an agent honest: back state claims with command output, strip personal data before anything is shared, and build a private and a public copy from one source so they cannot drift apart.",
   "version": "0.1.0",
   "author": {
-    "name": "ExampleCo",
-    "url": "https://acme.example"
+    "name": "MeshVault",
+    "url": "https://meshvault.ai"
   },
   "homepage": "https://github.com/thefiredev-cloud/agent-ops-kit",
   "repository": "https://github.com/thefiredev-cloud/agent-ops-kit",
