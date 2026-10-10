@@ -34,8 +34,9 @@ from pathlib import Path
 # Directories that are never part of a build output.
 SKIP_DIRS = {".git", "node_modules", "__pycache__", ".venv", "venv", ".mypy_cache"}
 
-# Read at most this much of any single file. A plugin ships text; anything
-# larger is almost certainly a binary blob and gets a bytes scan instead.
+# Scan at most this much of any single file. A plugin ships text; a larger file
+# is almost certainly a binary blob. Its first MAX_BYTES are scanned and the
+# file is reported as "oversized" so the run fails instead of passing silently.
 MAX_BYTES = 8 * 1024 * 1024
 
 
@@ -85,9 +86,13 @@ def mask(text):
 
 
 def walk(root):
-    """Yield every file under root, skipping VCS and dependency noise."""
+    """Yield every file under root, skipping VCS and dependency noise.
+
+    Only directories inside root are skipped, so a root that happens to sit
+    under a directory named venv or node_modules is still scanned.
+    """
     for path in sorted(root.rglob("*")):
-        if any(part in SKIP_DIRS for part in path.parts):
+        if any(part in SKIP_DIRS for part in path.relative_to(root).parts):
             continue
         if path.is_file():
             yield path
@@ -120,7 +125,16 @@ def scan(root, patterns):
         scan_text(rel, rel, patterns, findings, "filename")
 
         try:
+            size = path.stat().st_size
             data = path.read_bytes()[:MAX_BYTES]
+            if size > MAX_BYTES:
+                findings.append(
+                    {
+                        "file": rel, "line": 0, "pattern": "oversized", "group": "meta",
+                        "where": "content", "match": f"{size} bytes",
+                        "hint": f"only the first {MAX_BYTES} bytes were scanned; split or remove the file",
+                    }
+                )
         except OSError as exc:
             findings.append(
                 {
