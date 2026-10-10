@@ -20,12 +20,12 @@ caches, and clones.
 exits nonzero on any hit.
 
 ```bash
-python3 scripts/scrub.py --denylist my-denylist.json ./dist
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/scrub.py" --denylist my-denylist.json ./dist
 echo "exit: $?"     # 0 clean, 1 findings, 2 bad usage
 ```
 
 The engine ships with no patterns of its own. Copy
-`scripts/denylist.example.json`, fill in your values, and keep your copy out of
+`${CLAUDE_PLUGIN_ROOT}/scripts/denylist.example.json`, fill in your values, and keep your copy out of
 version control - a deny list is a tidy inventory of exactly what you are hiding.
 
 ## Two groups, two jobs
@@ -40,7 +40,7 @@ version control - a deny list is a tidy inventory of exactly what you are hiding
 Enforce both on anything public; enforce `secret` on everything:
 
 ```bash
-python3 scripts/scrub.py --denylist my-denylist.json --groups secret ./private-build
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/scrub.py" --denylist my-denylist.json --groups secret ./private-build
 ```
 
 ## What people forget

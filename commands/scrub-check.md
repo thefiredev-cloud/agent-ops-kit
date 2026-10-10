@@ -10,13 +10,13 @@ Target: $ARGUMENTS (if empty, use `dist/public`)
 Steps:
 
 1. Locate the deny list. Prefer `build/denylist.private.json`. If it is missing,
-   tell the user to copy `scripts/denylist.example.json` and fill it in — do not
+   tell the user to copy `${CLAUDE_PLUGIN_ROOT}/scripts/denylist.example.json` and fill it in. Do not
    invent patterns and do not proceed with an empty list.
 
 2. Run the scan and capture the exit code:
 
 ```bash
-python3 scripts/scrub.py --denylist build/denylist.private.json <target>
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/scrub.py" --denylist build/denylist.private.json <target>
 echo "exit: $?"
 ```
 

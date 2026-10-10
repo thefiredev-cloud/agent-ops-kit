@@ -20,7 +20,7 @@ start from a machine-checked baseline rather than an impression.
 **1. Run the scrubber.** It is the baseline, not the whole audit.
 
 ```bash
-python3 scripts/scrub.py --denylist build/denylist.private.json <target>
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/scrub.py" --denylist build/denylist.private.json <target>
 echo "exit: $?"
 ```
 

@@ -52,7 +52,7 @@ You run these yourself.
 | `/agent-ops-kit:scrub-check [path]` | Runs the scanner over `path` (default `dist/public`) with `build/denylist.private.json` and reports the exit code and output |
 | `/agent-ops-kit:release-public` | Runs `python3 build/build.py public`, lists `dist/public`, checks placeholders, `LICENSE` and `SECURITY.md`, then stops. It never publishes. |
 
-Both commands call `scripts/scrub.py` or `build/build.py` relative to the directory Claude Code is working in. Copy `scripts/scrub.py` into your project, or run Claude Code from a clone of this repository.
+`/scrub-check` and the auditor run the scanner from the plugin install directory through `${CLAUDE_PLUGIN_ROOT}`, so they work from any project. The deny list (`build/denylist.private.json`) and `build/build.py` are your files and are read relative to the directory Claude Code is working in. The scanner examples below run from a clone of this repository.
 
 ### Agent
 
