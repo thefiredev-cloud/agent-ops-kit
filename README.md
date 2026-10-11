@@ -108,8 +108,9 @@ Matches are masked in the output. You get the file, the line, whether the hit wa
 
 ### Limits
 
-- It skips directories named `.git`, `node_modules`, `__pycache__`, `.venv`, `venv` or `.mypy_cache` inside the target. Parent directories of the target are not considered, so a target under a directory named `venv` is still scanned.
+- It skips any path inside the target that has a component named `.git`, `node_modules`, `__pycache__`, `.venv`, `venv` or `.mypy_cache`, including a file with that name. Parent directories of the target are not considered, so a target under a directory named `venv` is still scanned.
 - It scans the first 8 MiB of each file. A larger file is reported as an `oversized` finding, so the run exits 1 instead of passing with part of the file unread.
+- A file that cannot be read is reported as an `unreadable` finding, so the run exits 1 instead of passing unchecked.
 - It decodes files loosely as UTF-8, so a string inside a compiled artifact is usually found. Metadata inside images and PDFs is not parsed.
 - It finds only what the deny list describes. A new hostname or alias passes.
 
