@@ -1,17 +1,33 @@
 {
  "repo": "agent-ops-kit",
- "files_tracked": 13,
- "head": "bb258eec51ea786900d64c36f74e03293044ac4a",
+ "files_tracked": 45,
+ "head": "27d63fb727f402d7237a5a31df89b97836389daa",
  "origin": "https://github.com/thefiredev-cloud/agent-ops-kit.git",
  "default_branch": "main",
  "languages": [
   [
    ".md",
+   10
+  ],
+  [
+   ".svg",
+   9
+  ],
+  [
+   ".png",
+   9
+  ],
+  [
+   ".mmd",
    8
   ],
   [
    ".json",
-   2
+   3
+  ],
+  [
+   ".html",
+   3
   ],
   [
    ".py",
@@ -24,6 +40,7 @@
   ".claude-plugin",
   "agents",
   "commands",
+  "docs",
   "scripts",
   "skills"
  ],
@@ -72,5 +89,7 @@
  "data_store_signals": {},
  "auth_signals": {},
  "tests": [],
- "docs_files": []
+ "docs_files": [
+  "docs/ARCHITECTURE.md"
+ ]
 }
