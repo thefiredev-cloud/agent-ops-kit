@@ -1,0 +1,16 @@
+flowchart LR
+  ghrepo{{"GitHub repo"}}:::ext
+  subgraph host_dev["Developer machine"]
+    ccsession{{"Claude Code session<br/>per session, flag each start"}}:::ext
+    plugindir["Plugin dir<br/>${CLAUDE_PLUGIN_ROOT}"]:::doc
+    scrubrun["scrub.py<br/>on demand"]:::app
+    yourfiles[("build/ + dist/<br/>your project")]:::store
+  end
+  ghrepo -.->|"clone or --plugin-url"| plugindir
+  ccsession -->|"--plugin-dir"| plugindir
+  ccsession -->|"slash command"| scrubrun
+  scrubrun -->|"reads"| yourfiles
+  classDef app fill:#bfdbfe,stroke:#1d4ed8,color:#0b1220
+  classDef doc fill:#fed7aa,stroke:#c2410c,color:#0b1220
+  classDef ext fill:#e5e7eb,stroke:#4b5563,color:#0b1220,stroke-dasharray:4 3
+  classDef store fill:#bbf7d0,stroke:#15803d,color:#0b1220

@@ -1,0 +1,95 @@
+{
+ "repo": "agent-ops-kit",
+ "files_tracked": 45,
+ "head": "27d63fb727f402d7237a5a31df89b97836389daa",
+ "origin": "https://github.com/thefiredev-cloud/agent-ops-kit.git",
+ "default_branch": "main",
+ "languages": [
+  [
+   ".md",
+   10
+  ],
+  [
+   ".svg",
+   9
+  ],
+  [
+   ".png",
+   9
+  ],
+  [
+   ".mmd",
+   8
+  ],
+  [
+   ".json",
+   3
+  ],
+  [
+   ".html",
+   3
+  ],
+  [
+   ".py",
+   1
+  ]
+ ],
+ "readme": "README.md",
+ "readme_first_paragraph": "A Claude Code plugin for developers who let an AI agent ship code and want guardrails around what it claims and what it publishes. It bundles three skills, two slash commands, one review subagent and a Python scanner that fails when listed personal data or credentials survive into a build.",
+ "top_dirs": [
+  ".claude-plugin",
+  "agents",
+  "commands",
+  "docs",
+  "scripts",
+  "skills"
+ ],
+ "manifests": [],
+ "libs": [],
+ "entry_points": [
+  {
+   "kind": "scripts",
+   "count": 1,
+   "paths": [
+    "scripts/scrub.py"
+   ]
+  },
+  {
+   "kind": "python-script-main",
+   "count": 1,
+   "paths": [
+    "scripts/scrub.py"
+   ]
+  }
+ ],
+ "services": [],
+ "deploy_targets": [],
+ "ci_workflows": [],
+ "cron_and_timers": [],
+ "files_scanned": 3,
+ "external_hosts": [
+  {
+   "host": "github.com",
+   "count": 2,
+   "first": ".claude-plugin/plugin.json:11"
+  },
+  {
+   "host": "json.schemastore.org",
+   "count": 1,
+   "first": ".claude-plugin/plugin.json:2"
+  },
+  {
+   "host": "meshvault.ai",
+   "count": 1,
+   "first": ".claude-plugin/plugin.json:9"
+  }
+ ],
+ "env_var_names": [],
+ "ci_secret_names": [],
+ "data_store_signals": {},
+ "auth_signals": {},
+ "tests": [],
+ "docs_files": [
+  "docs/ARCHITECTURE.md"
+ ]
+}

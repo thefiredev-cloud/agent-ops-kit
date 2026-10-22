@@ -1,0 +1,15 @@
+flowchart LR
+  src[("src/ + values/<br/>your source")]:::store
+  build["build.py<br/>yours"]:::app
+  dist[("dist/public")]:::store
+  deny[("Deny list")]:::store
+  scan["scrub.py"]:::app
+  out["Exit code + masked findings"]:::doc
+  src -->|"placeholders"| build
+  build -->|"render"| dist
+  deny -->|"patterns"| scan
+  dist -->|"files"| scan
+  scan -->|"0 / 1 / 2"| out
+  classDef app fill:#bfdbfe,stroke:#1d4ed8,color:#0b1220
+  classDef doc fill:#fed7aa,stroke:#c2410c,color:#0b1220
+  classDef store fill:#bbf7d0,stroke:#15803d,color:#0b1220

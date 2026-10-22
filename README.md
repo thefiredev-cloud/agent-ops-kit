@@ -124,6 +124,33 @@ A scanner that has never failed might be matching nothing at all. Plant a deny s
 - It does not publish. The build is the output, and the release is your call.
 - It does not make a push reversible. Forks, clones and caches outlive a deleted repository.
 
+<!-- arch:begin -->
+## Architecture
+
+A Claude Code plugin that makes an AI agent prove what it claims and strip personal data before anything leaves the machine.
+
+```mermaid
+flowchart LR
+  dev(["Developer + AI agent"]):::actor
+  cc{{"Claude Code"}}:::ext
+  plugin["Plugin<br/>skills, commands, auditor"]:::app
+  scanner["scrub.py scanner<br/>exit 0 / 1 / 2"]:::app
+  denylist[("Deny list<br/>yours")]:::store
+  build[("dist/public<br/>your build output")]:::store
+  dev -->|"asks"| cc
+  cc -->|"loads"| plugin
+  plugin -->|"runs"| scanner
+  scanner -->|"reads"| denylist
+  scanner -->|"scans"| build
+  classDef actor fill:#fde68a,stroke:#b45309,color:#111827
+  classDef app fill:#bfdbfe,stroke:#1d4ed8,color:#0b1220
+  classDef ext fill:#e5e7eb,stroke:#4b5563,color:#0b1220,stroke-dasharray:4 3
+  classDef store fill:#bbf7d0,stroke:#15803d,color:#0b1220
+```
+
+[Full architecture](docs/ARCHITECTURE.md) · Hi-res: [SVG](docs/architecture/whiteboard.svg) · [PNG 3x](docs/architecture/whiteboard@3x.png) · [dark PNG](docs/architecture/whiteboard.dark@3x.png) · [Explorable (Archify)](docs/architecture/agent-ops-kit.archify.html) · [Graphify report](docs/architecture/graphify/GRAPH_REPORT.md)
+<!-- arch:end -->
+
 ## License
 
 MIT. See [LICENSE](LICENSE). Security policy in [SECURITY.md](SECURITY.md).

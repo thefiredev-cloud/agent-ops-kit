@@ -1,0 +1,18 @@
+sequenceDiagram
+  autonumber
+  actor dev as Developer
+  participant cc as Claude Code
+  participant cmd as scrub-check command
+  participant scan as scrub.py
+  participant deny as Deny list
+  dev->>cc: /agent-ops-kit:scrub-check dist/public
+  cc->>cmd: expand command with target
+  Note over cmd: No deny list: stop, point to the example
+  cmd->>scan: python3 scrub.py --denylist build/denylist.private.json target
+  scan->>deny: load patterns
+  deny-->>scan: compiled regexes
+  loop each file in target
+    scan->>scan: match content and names
+  end
+  scan-->>cmd: exit 0 clean, 1 findings, 2 usage error
+  cmd-->>dev: exit code and output verbatim, file:line per finding

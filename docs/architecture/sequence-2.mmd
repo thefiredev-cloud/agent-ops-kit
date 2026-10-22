@@ -1,0 +1,16 @@
+sequenceDiagram
+  autonumber
+  actor dev as Developer
+  participant cmd as release-public command
+  participant build as build/build.py (yours)
+  participant dist as dist/public
+  dev->>cmd: /agent-ops-kit:release-public
+  cmd->>build: python3 build/build.py public
+  alt deny patterns survive
+    build-->>cmd: nonzero exit, no dist/public written
+    cmd-->>dev: report findings and stop
+  else clean build
+    build->>dist: write public tree
+    cmd->>dist: list files, read README, check placeholders, LICENSE, SECURITY.md
+    cmd-->>dev: PENDING: publish, awaiting your authorization
+  end
