@@ -1,0 +1,13 @@
+stateDiagram-v2
+  direction LR
+  [*] --> Source
+  Source --> Rejected: build.py public exits nonzero
+  Source --> Staged: clean build writes dist/public
+  Staged --> Scanned: scrub.py exit 0
+  Staged --> Rejected: scrub.py exit 1
+  Scanned --> NotSafe: auditor finds anything
+  Scanned --> SafeToShare: auditor finds nothing
+  SafeToShare --> Pending: PENDING publish
+  NotSafe --> Source: fix source, not the pattern
+  Rejected --> Source: fix source, not the pattern
+  Pending --> [*]: owner publishes by hand

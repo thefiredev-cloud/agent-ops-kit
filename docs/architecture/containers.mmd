@@ -1,0 +1,29 @@
+flowchart LR
+  dev(["Developer + AI agent"]):::actor
+  cc{{"Claude Code"}}:::ext
+  gh{{"GitHub (distribution)"}}:::ext
+  subgraph SYSTEM["Agent Ops Kit"]
+    manifest["Plugin manifest<br/>plugin.json"]:::doc
+    skills["3 skills<br/>SKILL.md"]:::doc
+    cmds["2 slash commands<br/>markdown"]:::doc
+    auditor["release-auditor<br/>subagent"]:::app
+    scanner["scrub.py<br/>Python 3.9+ stdlib"]:::app
+    denylist[("Deny list (yours)<br/>JSON patterns")]:::store
+    build[("Build + dist/ (yours)<br/>build/build.py")]:::store
+  end
+  dev -->|"slash command / task"| cc
+  cc -->|"loads plugin"| manifest
+  manifest -->|"registers"| skills
+  manifest -->|"registers"| cmds
+  manifest -->|"registers"| auditor
+  cmds -->|"python3 scrub.py"| scanner
+  auditor -->|"baseline scan"| scanner
+  scanner -->|"reads patterns"| denylist
+  scanner -->|"scans dist/public"| build
+  cmds -->|"build.py public"| build
+  gh -.->|"--plugin-url zip"| cc
+  classDef actor fill:#fde68a,stroke:#b45309,color:#111827
+  classDef app fill:#bfdbfe,stroke:#1d4ed8,color:#0b1220
+  classDef doc fill:#fed7aa,stroke:#c2410c,color:#0b1220
+  classDef ext fill:#e5e7eb,stroke:#4b5563,color:#0b1220,stroke-dasharray:4 3
+  classDef store fill:#bbf7d0,stroke:#15803d,color:#0b1220
