@@ -153,4 +153,4 @@ flowchart LR
 
 ## License
 
-MIT. See [LICENSE](LICENSE). Security policy in [SECURITY.md](SECURITY.md).
+All rights reserved. See [LICENSE](LICENSE). Licensing questions and contact: [tanner@kodros.ai](mailto:tanner@kodros.ai). Security policy in [SECURITY.md](SECURITY.md).
