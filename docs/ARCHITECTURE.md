@@ -266,7 +266,7 @@ Every path below exists at the pinned commit; links are relative to `docs/`.
 Collected mechanically by the kit ([`architecture/facts.json`](architecture/facts.json), not hand-edited):
 
 - entry points: `scripts`, `python-script-main`
-- external hosts seen in source: `github.com`, `json.schemastore.org`, `meshvault.ai`
+- external hosts seen in source: `github.com`, `json.schemastore.org`, `kodros.ai`
 
 Graphify (local AST, no LLM) read this repo: 113 nodes, 128 edges, 10 communities. Most connected: `Agent Ops Kit: architecture` (11), `Graph Report - agent-ops-kit  (2026-10-21)` (10), `Agent Ops Kit` (9), `Communities (10 total, 2 thin omitted)` (9), `load_patterns()` (8).
 
